@@ -41,3 +41,27 @@ configuracion tsconfig.json
 }
 
 configuracion en .eslintrc.json
+
+## react navigation
+
+1 yarn add @react-navigation/native
+2 npx expo install react-native-screens react-native-safe-area-context
+
+3 importar react navigation en App.tsx y envolver la aplicaion
+
+```
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <NavigationContainer>{/* Rest of your app code */}</NavigationContainer>
+  );
+}
+```
+
+4 yarn add @react-navigation/native-stack
+
+5 yarn add @react-navigation/bottom-tabs
+
+6 yarn add react-native-vector-icons
