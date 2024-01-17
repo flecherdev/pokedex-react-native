@@ -6,7 +6,7 @@ import {Pokemon} from '../model/Pokemon';
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  console.log(pokemons);
+  // console.log(pokemons);
   useEffect(() => {
     // funcion anonima auto ejecutable
     (async () => {
@@ -22,13 +22,14 @@ const Pokedex = () => {
 
       for await (const pokemon of response.results) {
         const pokemonDetail = await getPokemonDetailsByUrlApi(pokemon.url);
-
+        // console.log('pokemonDetail', pokemonDetail);
         pokeArray.push({
           id: pokemonDetail.id,
           name: pokemonDetail.name,
           type: pokemonDetail.types[0].type.name,
           order: pokemonDetail.order,
-          image: pokemonDetail.sprites.other.dream_world.front_default,
+          // image: pokemonDetail.sprites.other.dream_world.front_default,
+          image: pokemonDetail.sprites.front_default,
         });
       }
 
