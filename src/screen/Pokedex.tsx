@@ -6,6 +6,7 @@ import {Pokemon} from '../model/Pokemon';
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [nextUrl, setNextUrl] = useState(undefined);
   // console.log(pokemons);
   useEffect(() => {
     // funcion anonima auto ejecutable
@@ -16,8 +17,8 @@ const Pokedex = () => {
 
   const loadPokemon = async () => {
     try {
-      const response = await getPokemonApi();
-
+      const response = await getPokemonApi(nextUrl);
+      setNextUrl(response.next);
       const pokeArray: Pokemon[] = [];
 
       for await (const pokemon of response.results) {
@@ -41,7 +42,11 @@ const Pokedex = () => {
 
   return (
     <SafeAreaView>
-      <PokemonList pokemons={pokemons} />
+      <PokemonList
+        pokemons={pokemons}
+        loadPokemons={loadPokemon}
+        isNext={nextUrl}
+      />
     </SafeAreaView>
   );
 };
