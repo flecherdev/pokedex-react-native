@@ -8,11 +8,15 @@ import {
 import React from 'react';
 import {Pokemon} from '../model/Pokemon';
 import getColorByPokemonType from '../utils/getColorByPokemonType';
+import {capitalize} from 'lodash';
 
 const PokemonCard = (props: any) => {
   const {pokemon} = props;
 
-  const bgStyle = {backgroundColor: '#f0f', ...style.bgStyle};
+  const pokemonColor = getColorByPokemonType(pokemon.type);
+
+  const bgStyle = {backgroundColor: pokemonColor, ...style.bgStyle};
+
   const goToPokemon = () => {
     console.log('pokemon: ', pokemon);
   };
@@ -25,7 +29,7 @@ const PokemonCard = (props: any) => {
             <Text style={style.number}>
               #{`${pokemon.order}`.padStart(3, '0')}
             </Text>
-            <Text style={style.name}>{pokemon.name}</Text>
+            <Text style={style.name}>{capitalize(pokemon.name)}</Text>
             <Image
               style={style.image}
               source={{
