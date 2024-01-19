@@ -20,8 +20,7 @@ const PokemonCard = (props: any) => {
   const bgStyle = {backgroundColor: pokemonColor, ...style.bgStyle};
 
   const goToPokemon = () => {
-    console.log('pokemon: ', pokemon);
-    navigation.navigate('Pokemon', {pokemon});
+    navigation.navigate('Pokemon', {id: pokemon.id});
   };
 
   return (
