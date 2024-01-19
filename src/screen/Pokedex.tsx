@@ -7,7 +7,7 @@ import {Pokemon} from '../model/Pokemon';
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [nextUrl, setNextUrl] = useState(undefined);
-  // console.log(pokemons);
+
   useEffect(() => {
     // funcion anonima auto ejecutable
     (async () => {

@@ -17,7 +17,6 @@ type PokemonListProp = {
 
 function PokemontList({pokemons, loadPokemons, isNext}: PokemonListProp) {
   const loadMore = () => {
-    console.log('cargando mas pokemons...');
     loadPokemons();
   };
 
