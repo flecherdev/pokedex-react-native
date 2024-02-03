@@ -48,7 +48,7 @@ const PokemonCard = (props: any) => {
 const style = StyleSheet.create({
   card: {
     flex: 1,
-    height: 130,
+    height: 120,
   },
   spacing: {
     flex: 1,
@@ -74,8 +74,8 @@ const style = StyleSheet.create({
   },
   image: {
     position: 'absolute',
-    bottom: 5,
-    right: 10,
+    bottom: 2,
+    right: 2,
     width: 90,
     height: 90,
   },

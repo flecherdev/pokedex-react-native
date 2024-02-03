@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from './src/navigation/Navigation';
 import Pokemon from './src/screen/Pokemon';
+import AuthProvider from './src/context/AuthContext';
 
 // function Root() {
 //   return (
@@ -15,7 +16,9 @@ import Pokemon from './src/screen/Pokemon';
 export default function App() {
   return (
     <NavigationContainer>
-      <Navigation />
+      <AuthProvider>
+        <Navigation />
+      </AuthProvider>
     </NavigationContainer>
   );
 }
