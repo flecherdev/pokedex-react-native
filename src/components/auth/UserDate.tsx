@@ -1,9 +1,15 @@
 import {View, Text, StyleSheet, Button} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import useAuth from '../../hooks/useAuth';
+import {UserDetail} from '../../model/UserDetail';
 
 const UserDate = () => {
   const {auth, logOut} = useAuth();
+  const [login, setLogin] = useState<UserDetail>();
+
+  useEffect(() => {
+    setLogin(auth);
+  }, [login]);
 
   const ItemMenu = (props: any) => {
     const {title, text} = props;
@@ -21,16 +27,16 @@ const UserDate = () => {
         {auth && (
           <Text
             style={styles.title}
-          >{`${auth?.firstName} ${auth?.lastName}`}</Text>
+          >{`${login?.firstName} ${login?.lastName}`}</Text>
         )}
 
         <View style={styles.dataContent}>
           <ItemMenu
             title={'Nombre'}
-            text={`${auth?.firstName} ${auth?.lastName}`}
+            text={`${login?.firstName} ${login?.lastName}`}
           />
-          <ItemMenu title={'User name'} text={auth.username} />
-          <ItemMenu title={'Email'} text={auth.email} />
+          <ItemMenu title={'User name'} text={login?.username} />
+          <ItemMenu title={'Email'} text={login?.email} />
         </View>
         <Button title="Desconectar" onPress={logOut} />
       </View>

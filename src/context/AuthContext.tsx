@@ -1,26 +1,30 @@
 import React, {createContext, useState} from 'react';
 import {UserDetail} from '../model/UserDetail';
-import {Login} from '../model/Login';
 import {userDetail} from '../utils/userDb';
 
+const initialize: UserDetail = {
+  username: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+};
+
 export const AuthContext = createContext({
-  auth: undefined,
+  auth: initialize,
   login: () => {},
   logOut: () => {},
 });
 
 const AuthProvider = (props: any) => {
   const {children} = props;
-  const [auth, setAuth] = useState<any>(undefined);
-
-  console.log('auth provider', auth);
+  const [auth, setAuth] = useState<UserDetail>(initialize);
 
   const login = () => {
     setAuth(userDetail);
   };
 
   const logOut = () => {
-    setAuth(undefined);
+    setAuth(initialize);
   };
 
   const valueContext = {
@@ -30,7 +34,15 @@ const AuthProvider = (props: any) => {
   };
 
   return (
-    <AuthContext.Provider value={valueContext}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        auth,
+        login,
+        logOut,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
 

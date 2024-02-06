@@ -1,19 +1,10 @@
-import React, {FC, ReactEventHandler, ReactNode, useState} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  Keyboard,
-  TextInput,
-} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
 import * as Yup from 'yup';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {user, userDetail} from '../../utils/userDb';
+import {user} from '../../utils/userDb';
 import useAuth from '../../hooks/useAuth';
-import {useNavigation} from '@react-navigation/native';
-import {Login} from '../../model/Login';
 
 const schema = Yup.object()
   .shape({
@@ -30,9 +21,8 @@ type Inputs = {
 const LoginForm = () => {
   const [error, setError] = useState('');
   const {login} = useAuth();
-  const navigation = useNavigation();
 
-  console.log(useAuth());
+  // console.log(useAuth());
 
   const {
     control,
@@ -47,7 +37,6 @@ const LoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    console.log('data', data);
     const {username, password} = data;
     if (username !== user.usename || password !== user.password) {
       setError('user incorrecto');
@@ -76,7 +65,6 @@ const LoginForm = () => {
         )}
         name="username"
       />
-      {/* {errors.username && <Text>This is required.</Text>} */}
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
@@ -92,8 +80,6 @@ const LoginForm = () => {
         )}
         name="password"
       />
-      {/* {errors.password && <Text>This is required.</Text>} */}
-
       <Button title="Entrar" onPress={handleSubmit((e: any) => onSubmit(e))} />
 
       <Text style={styles.error}>{errors.username?.message}</Text>
