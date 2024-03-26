@@ -8,6 +8,7 @@ const UserDate = () => {
   const [login, setLogin] = useState<UserDetail>();
 
   useEffect(() => {
+    console.log('auth', auth);
     setLogin(auth);
   }, [login]);
 
@@ -38,7 +39,7 @@ const UserDate = () => {
           <ItemMenu title={'User name'} text={login?.username} />
           <ItemMenu title={'Email'} text={login?.email} />
         </View>
-        <Button title="Desconectar" onPress={logOut} />
+        <Button title="Desconectar" onPress={() => logOut()} />
       </View>
     </View>
   );

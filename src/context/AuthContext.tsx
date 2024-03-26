@@ -17,14 +17,14 @@ export const AuthContext = createContext({
 
 const AuthProvider = (props: any) => {
   const {children} = props;
-  const [auth, setAuth] = useState<UserDetail>(initialize);
+  const [auth, setAuth] = useState<UserDetail | null>();
 
   const login = () => {
     setAuth(userDetail);
   };
 
   const logOut = () => {
-    setAuth(initialize);
+    setAuth(null);
   };
 
   const valueContext = {

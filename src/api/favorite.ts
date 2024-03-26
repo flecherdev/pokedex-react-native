@@ -20,3 +20,22 @@ export const addPokemonFavoriteApi = async (id: number | string) => {
     throw error;
   }
 };
+
+export const isPokemonFavoriteApi = async (id: number | string) => {
+  try {
+    const response = await getPokemonsFavoriteApi();
+    return includes(response, id);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const removePokemonFavoriteApi = async (id: number | string) => {
+  try {
+    const favorites = await getPokemonsFavoriteApi();
+    const newFavorite = pull(favorites, id);
+    await AsyncStorage.setItem(FAVORITE_STORE, JSON.stringify(newFavorite));
+  } catch (error) {
+    throw error;
+  }
+};
